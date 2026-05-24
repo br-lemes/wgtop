@@ -1,0 +1,5 @@
+{
+    "ignorePaths": ["go.mod", "go.sum"],
+    "language": "en",
+    "words": ["GOARCH", "lemes", "wgctrl", "wgtop", "wgtypes"]
+}
