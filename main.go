@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"flag"
 	"fmt"
 	"log"
@@ -9,9 +10,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/br-lemes/wgtop/internal/version"
 	"golang.zx2c4.com/wireguard/wgctrl"
 )
+
+//go:embed .version
+var version string
 
 const loopDelay = 5 * time.Second
 
@@ -45,7 +48,7 @@ func main() {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Printf("wgtop version %s\n", version.GetVersion())
+		fmt.Printf("wgtop version %s\n", version)
 		return
 	}
 
@@ -104,7 +107,7 @@ func renderOutput(cfg RenderConfig, devices []DeviceInfo) {
 		cfg.InterfaceName,
 		cfg.StatusFilter,
 		cfg.SortBy,
-		version.GetVersion(),
+		version,
 	)
 
 	if len(devices) == 0 {
